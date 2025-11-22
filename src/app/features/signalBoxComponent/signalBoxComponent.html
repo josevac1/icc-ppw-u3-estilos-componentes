@@ -1,15 +1,19 @@
 <section class="flex flex-col items-center justify-center p-6 gap-4">
-  <h2 class="text-xl font-semibold text-gray-700 mb-2">Ejemplo con Signal y Tailwind</h2>
+  <h2 class="text-xl font-semibold text-gray-700 mb-2">
+    Ejemplo con Signal y Tailwind
+  </h2>
 
   <input
     type="number"
     placeholder="Escribe un número"
-    class="border border-gray-300 rounded p-2 text-center w-40 focus:outline-none focus:ring-2 focus:ring-blue-500"
+    class="border border-gray-300 rounded p-2 text-center w-40
+           focus:outline-none focus:ring-2 focus:ring-blue-500"
     (input)="cambiarValor($event)"
   >
 
   <div
-    class="w-32 h-32 flex items-center justify-center text-white font-bold rounded transition-all duration-500"
+    class="w-32 h-32 flex items-center justify-center text-white font-bold 
+           rounded transition-all duration-500"
     [class.bg-green-500]="valor() > 20"
     [class.bg-red-500]="valor() <= 20"
   >
@@ -19,4 +23,28 @@
   <p class="text-sm text-gray-600 mt-2">
     El color cambia automáticamente si el valor supera 20.
   </p>
+
+  <h3 class="text-lg font-semibold mt-6">Barra de progreso interactiva</h3>
+
+  <input
+    type="range"
+    min="0"
+    max="100"
+    class="w-64 accent-blue-600"
+    (input)="cambiarProgreso($event)"
+  >
+
+  <div class="w-64 h-4 bg-gray-300 rounded-full overflow-hidden">
+    <div
+      class="h-full transition-all duration-300"
+      [style.width.%]="progreso()"
+      [ngClass]="{
+        'bg-red-500': progreso() <= 20,
+        'bg-yellow-500': progreso() > 20 && progreso() <= 69,
+        'bg-green-500': progreso() > 69
+      }"
+    ></div>
+  </div>
+
+  <p class="font-medium">Progreso: {{ progreso() }}%</p>
 </section>
