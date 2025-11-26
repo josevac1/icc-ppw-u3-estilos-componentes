@@ -1,4 +1,4 @@
 export const environment = {
-      production: false,
-  apiUrl: 'https://api.devserver.com'
+  production: false,
+  apiUrl: 'https://thesimpsonsapi.com/api'
 };

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { SimpsonSservice } from '../simpsons-page/services/simpson-sservice';
 import { map, switchMap } from 'rxjs';
 
@@ -12,7 +12,7 @@ import { map, switchMap } from 'rxjs';
   styleUrl: './simpson-detail-page.css',
 })
 export class SimpsonDetailPage {
-   private route = inject(ActivatedRoute);
+  private route = inject(ActivatedRoute);
   private service = inject(SimpsonSservice);
 
   personaje = toSignal(
@@ -22,5 +22,7 @@ export class SimpsonDetailPage {
     ),
     { initialValue: null }
   );
-
+//  metodo(){
+//   this.personaje()?.portrait_path
+//  }
 }

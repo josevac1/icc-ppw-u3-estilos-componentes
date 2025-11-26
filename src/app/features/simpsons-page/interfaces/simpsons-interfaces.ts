@@ -18,6 +18,11 @@ export interface SimpsonsCharacter {
   status: string;
 }
 
+export interface Options {
+    limit?: number;
+    offset?: number;
+}
+
 export interface SimpsonsCharacterDetail extends SimpsonsCharacter {
   description: string;
   first_appearance_ep: {
@@ -27,4 +32,6 @@ export interface SimpsonsCharacterDetail extends SimpsonsCharacter {
     description: string;
     image_path: string;
   };
+
+  
 }

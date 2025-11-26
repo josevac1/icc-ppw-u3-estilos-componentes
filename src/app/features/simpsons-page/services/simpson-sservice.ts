@@ -1,7 +1,7 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, catchError, map, of, throwError } from 'rxjs';
-import { SimpsonsCharacterDetail, SimpsonsResponse } from '../interfaces/simpsons-interfaces';
+import { Observable, catchError, delay, map, of, throwError } from 'rxjs';
+import { Options, SimpsonsCharacterDetail, SimpsonsResponse } from '../interfaces/simpsons-interfaces';
 import { environment } from '../../../../environments/environment.development';
 
 @Injectable({
@@ -29,6 +29,18 @@ export class SimpsonSservice {
       })
     );
   }
+
+  getCharactersOptions(options: Options): Observable<SimpsonsResponse> {
+    return this.http.get<SimpsonsResponse>(`${this.API_URL}/characters?page=${options.offset}`).pipe(
+      delay(3500),
+      map(res => res),
+      catchError(err => {
+        console.error('Error al obtener personajes', err);
+        return of({ count: 0, next: null, prev: null, pages: 0, results: [] });
+      })
+    );
+  }
+ 
   constructor() { }
 
 }

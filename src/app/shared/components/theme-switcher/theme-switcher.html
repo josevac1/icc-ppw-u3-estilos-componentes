@@ -1,0 +1,43 @@
+<!-- Botón desplegable de cambio de tema -->
+<div class="dropdown dropdown-end">
+  <button tabindex="0" class="btn btn-ghost gap-2">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="w-6 h-6"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M12 3v1.5M12 19.5V21M4.22 4.22l1.06 1.06M18.72 18.72l1.06 1.06M1.5 12H3m18 0h1.5M4.22 19.78l1.06-1.06M18.72 5.28l1.06-1.06M12 6a6 6 0 000 12a6 6 0 000-12z"
+      />
+    </svg>
+
+    <span>
+      Tema: <span class="font-semibold capitalize">{{ currentTheme() }}</span>
+    </span>
+  </button>
+
+  <ul
+    tabindex="0"
+    class="dropdown-content menu p-2 bg-base-100 rounded-box w-44 shadow-lg"
+  >
+    @for (theme of themes; track theme) {
+      <li>
+        <button
+          class="capitalize flex justify-between"
+          (click)="setTheme(theme)"
+        >
+          {{ theme }}
+          <!-- Icono check cuando esté seleccionado -->
+          @if (currentTheme() === theme) {
+            <span class="text-primary">✔</span>
+          }
+        </button>
+      </li>
+    }
+  </ul>
+</div>
