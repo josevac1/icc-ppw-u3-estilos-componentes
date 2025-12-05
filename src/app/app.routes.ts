@@ -1,27 +1,53 @@
 import { Routes } from '@angular/router';
-import { DaisyuiPage } from './features/daisyui-page/daisyui-page';
-import { SimpsonsPage } from './features/simpsons-page/simpsons-page';
-import { SimpsonDetailPage } from './features/simpson-detail-page/simpson-detail-page';
-import { EstilosPage } from './features/estilos-page/estilos-page';
+import { authGuard } from './core/guards/authguard';
+import { publicGuard } from './core/guards/publicguard';
+import { adminGuard } from './core/guards/adminguard';
+
+
 
 export const routes: Routes = [
-
-  {
+    {
     path: '',
-    component: DaisyuiPage
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
+  {
+    path: 'login',
+    loadComponent: () => import('./feature/auth/pages/login-page/login-page').then(m => m.LoginPage),
+    canActivate: [publicGuard]
+  },
+  {
+    path: 'register',
+    loadComponent: () => import('./feature/auth/pages/register-page/register-page').then(m => m.RegisterPage),
+    canActivate: [publicGuard]
+  },
+  {
+    path: 'home',
+    loadComponent: () => import('./feature/daisy-page/daisy-page').then(m => m.DaisyPage),
+   
+  },
+  {
+    path: 'estilos',
+    loadComponent: () => import('./feature/estilos-page/estilos-page').then(m => m.EstilosPage),
+    canActivate: [authGuard]
   },
   {
     path: 'simpsons',
-    component: SimpsonsPage,
+    loadComponent: () => import('./feature/simpsons-page/simpsons-page').then(m => m.SimpsonsPage),
+    canActivate: [authGuard]
   },
   {
     path: 'simpsons/:id',
-    component: SimpsonDetailPage,
+    loadComponent: () => import('./feature/simpson-detail-page/simpson-detail-page').then(m => m.SimpsonDetailPage),
+    canActivate: [authGuard]
   },
-    {
-    path: 'estilos',
-    component: EstilosPage,
+  {
+  path: 'admin',
+  loadComponent: () => import('./feature/auth/pages/AdminComponetPage/AdminComponetPage').then(m => m.AdminPanelComponent),
+  canActivate: [authGuard, adminGuard] // Ambos guards
+},
+  {
+    path: '**',
+    redirectTo: 'login'
   }
-
-
 ];
