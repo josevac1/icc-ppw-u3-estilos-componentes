@@ -14,7 +14,7 @@
           "builder": "@angular/build:application",
           "options": {
             "browser": "src/main.ts",
-            "outputPath": "dist/03-ui-componentes-estilos",
+            "outputPath": "dist/icc-ppw-u3-estilos-componentes",
             "tsConfig": "tsconfig.app.json",
             "assets": [
               {
@@ -29,8 +29,8 @@
           },
           "configurations": {
             "production": {
-              "baseHref": "/03-ui-componentes-estilos/",
-              "deployUrl": "/03-ui-componentes-estilos/",
+              "baseHref": "/icc-ppw-u3-estilos-componentes/",
+              "deployUrl": "/icc-ppw-u3-estilos-componentes/",
               "budgets": [
                 {
                   "type": "initial",
@@ -63,10 +63,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "03-ui-componentes-estilos:build:production"
+              "buildTarget": "icc-ppw-u3-estilos-componentes:build:production"
             },
             "development": {
-              "buildTarget": "03-ui-componentes-estilos:build:development"
+              "buildTarget": "icc-ppw-u3-estilos-componentes:build:development"
             }
           },
           "defaultConfiguration": "development"
