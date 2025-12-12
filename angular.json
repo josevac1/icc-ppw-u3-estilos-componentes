@@ -16,17 +16,26 @@
             "browser": "src/main.ts",
             "outputPath": "dist/icc-ppw-u3-estilos-componentes",
             "tsConfig": "tsconfig.app.json",
+
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "public",
+                "output": "/"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "assets"
               }
             ],
+
             "styles": [
               "src/styles.css",
               "node_modules/ngx-toastr/toastr.css"
             ]
           },
+
           "configurations": {
             "production": {
               "baseHref": "/icc-ppw-u3-estilos-componentes/",
@@ -45,6 +54,7 @@
               ],
               "outputHashing": "all"
             },
+
             "development": {
               "optimization": false,
               "extractLicenses": false,
@@ -57,44 +67,58 @@
               ]
             }
           },
+
           "defaultConfiguration": "production"
         },
+
         "serve": {
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "icc-ppw-u3-estilos-componentes:build:production"
+              "buildTarget": "03-ui-componentes-estilos:build:production"
             },
             "development": {
-              "buildTarget": "icc-ppw-u3-estilos-componentes:build:development"
+              "buildTarget": "03-ui-componentes-estilos:build:development"
             }
           },
           "defaultConfiguration": "development"
         },
+
         "extract-i18n": {
           "builder": "@angular/build:extract-i18n"
         },
+
         "test": {
           "builder": "@angular/build:karma",
           "options": {
             "tsConfig": "tsconfig.spec.json",
+
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "public",
+                "output": "/"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "assets"
               }
             ],
+
             "styles": [
               "src/styles.css"
             ]
           }
         },
+
         "deploy": {
           "builder": "angular-cli-ghpages:deploy"
         }
       }
     }
   },
+
   "cli": {
     "analytics": "d274b2f7-131c-4a6a-af3b-f766669ac004"
   }
